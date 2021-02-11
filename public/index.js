@@ -22,8 +22,16 @@ app.get( '/' , function( req , res ) {
     obj.month = month;
     obj.day = date;
     obj.year = year;
+    
+    obj.CSSLink = "https://jbarkerwebdev.sites.tjhsst.edu/styles/css?name=styles";
 
     res.render("index.hbs", obj);
+});
+
+app.get( '/styles/css' , function( req , res ) {
+    if(req.query.name == "styles"){
+        res.sendFile(__dirname + "/css/styles.css");
+    }
 });
 
 var listener = app.listen( process . env . PORT || 8080 , process . env . HOST || "0.0.0.0" , function() {
