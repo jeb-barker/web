@@ -43,6 +43,7 @@ app.get( '/dogcatfish' , function( req , res ) {
         obj.CSSLink = "https://jbarkerwebdev.sites.tjhsst.edu/styles/css?name=styles";
     }
     else if(req.query.page == "dog"){
+        obj.CSSLink = "https://jbarkerwebdev.sites.tjhsst.edu/styles/css?name=dcf";
         obj.main = false;
         obj.type = "dog"
         if(req.query.type == "dog"){
@@ -59,6 +60,7 @@ app.get( '/dogcatfish' , function( req , res ) {
         }
     }
     else if(req.query.page == "cat"){
+        obj.CSSLink = "https://jbarkerwebdev.sites.tjhsst.edu/styles/css?name=dcf";
         obj.main = false;
         obj.type = "cat"
         if(req.query.type == "cat"){
@@ -75,6 +77,7 @@ app.get( '/dogcatfish' , function( req , res ) {
         }
     }
     else if(req.query.page == "fish"){
+        obj.CSSLink = "https://jbarkerwebdev.sites.tjhsst.edu/styles/css?name=dcf";
         hbsPage = "instructions.hbs"
         if(req.query.type != null){
             hbsPage = "dcf.hbs"
@@ -83,6 +86,7 @@ app.get( '/dogcatfish' , function( req , res ) {
         }
     }
     else{
+        obj.CSSLink = "https://jbarkerwebdev.sites.tjhsst.edu/styles/css?name=dcf";
         obj.truth = false
         obj.error = true
     }
@@ -105,6 +109,9 @@ app.get( '/dogcatfish' , function( req , res ) {
 app.get( '/styles/css' , function( req , res ) {
     if(req.query.name == "styles"){
         res.sendFile(__dirname + "/css/styles.css");
+    }
+    if(req.query.name == "dcf"){
+        res.sendFile(__dirname + "/css/dog-cat-fish.css");
     }
 });
 
