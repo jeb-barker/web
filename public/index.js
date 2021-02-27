@@ -1,17 +1,17 @@
-var express = require( 'express' );
-var hbs = require( 'hbs' );
+var express = require('express');
+var hbs = require('hbs');
 
 var app = express();
 
 
 app.use(express.static("web/public/views"));
 
-app.get( '/' , function( req , res ) {
+app.get('/', function (req, res) {
 
-    console.log( 'user landed at main page' );
-    
+    console.log('user landed at main page');
+
     let obj = {}
-    
+
     let dater = new Date();
     let month = dater.getMonth() + 1;
     let date = dater.getDate();
@@ -22,101 +22,160 @@ app.get( '/' , function( req , res ) {
     obj.month = month;
     obj.day = date;
     obj.year = year;
-    
+
     obj.CSSLink = "https://jbarkerwebdev.sites.tjhsst.edu/styles/css?name=styles";
 
-    obj.labs = [{title: "Dog-Cat-Fish", link: "/dogcatfish"}]//TODO: Add link
+    obj.labs = [{ title: "Dog-Cat-Fish", link: "/dogcatfish" }]//TODO: Add link
 
     res.render("index.hbs", obj);
 });
 
-app.get( '/dogcatfish' , function( req , res ) {
+app.get('/dogcatfish', function (req, res) {
 
-    console.log( 'user landed at Dog-Cat-Fish' );
+    console.log('user landed at Dog-Cat-Fish');
     let obj = {}
     let hbsPage = "dcf.hbs"
-    let pref = "http://localhost:8080/dogcatfish" //testing on PC
-    obj.animals = [{name: "Dog", linkA: "?page=dog", linkB: "?page=dog&type=dog"}, {name: "Cat", linkA: "?page=cat", linkB: "?page=cat&type=cat"}, {name: "Fish", linkA: "?page=fish", linkB: "?page=fish&type=fish"}]//TODO: Add link
+    obj.animals = [{ name: "Dog", linkA: "/dog", linkB: "/pet?type=dog" }, { name: "Cat", linkA: "/cat", linkB: "/pet?type=cat" }, { name: "Fish", linkA: "/fish", linkB: "/pet?type=fish" }]//TODO: Add link
 
-    if(req.query.page == "home" || req.query.page == "" || req.query.page == null){
-        obj.main = true
-        obj.CSSLink = "https://jbarkerwebdev.sites.tjhsst.edu/styles/css?name=styles";
-    }
-    else if(req.query.page == "dog"){
-        obj.CSSLink = "https://jbarkerwebdev.sites.tjhsst.edu/styles/css?name=dcf";
-        obj.main = false;
-        obj.type = "dog"
-        if(req.query.type == "dog"){
-            obj.truth = true
-            obj.imgsrc = "https://d17fnq9dkz9hgj.cloudfront.net/breed-uploads/2018/08/beagle-card-medium.jpg?bust=1535569257"
-        }
-        else if(req.query.type == null){
-            obj.truth = false
-            obj.imgsrc = "https://assets3.thrillist.com/v1/image/2622128/1200x600/crop;"
-        }
-        else{
-            obj.truth = false
-            obj.error = true
-        }
-    }
-    else if(req.query.page == "cat"){
-        obj.CSSLink = "https://jbarkerwebdev.sites.tjhsst.edu/styles/css?name=dcf";
-        obj.main = false;
-        obj.type = "cat"
-        if(req.query.type == "cat"){
-            obj.truth = true
-            obj.imgsrc = "https://assets3.thrillist.com/v1/image/2622128/1200x600/crop;"
-        }
-        else if(req.query.type == null){
-            obj.truth = false
-            obj.imgsrc = "https://d17fnq9dkz9hgj.cloudfront.net/breed-uploads/2018/08/beagle-card-medium.jpg?bust=1535569257"
-        }
-        else{
-            obj.truth = false
-            obj.error = true
-        }
-    }
-    else if(req.query.page == "fish"){
-        obj.CSSLink = "https://jbarkerwebdev.sites.tjhsst.edu/styles/css?name=dcf";
-        hbsPage = "instructions.hbs"
-        if(req.query.type != null){
-            hbsPage = "dcf.hbs"
-            obj.truth = false
-            obj.error = true
-        }
-    }
-    else{
-        obj.CSSLink = "https://jbarkerwebdev.sites.tjhsst.edu/styles/css?name=dcf";
-        obj.truth = false
-        obj.error = true
-    }
-    
-    
+    obj.main = true
+    obj.CSSLink = "https://jbarkerwebdev.sites.tjhsst.edu/styles/css?name=styles";
+
     let dater = new Date();
     let month = dater.getMonth() + 1;
     let date = dater.getDate();
     let year = dater.getFullYear();
 
-    
     obj.month = month;
     obj.day = date;
     obj.year = year;
-    
+
 
     res.render(hbsPage, obj);
 });
 
-app.get( '/styles/css' , function( req , res ) {
-    if(req.query.name == "styles"){
+app.get('/dog', function (req, res) {
+
+    console.log('user landed at dog');
+
+    let obj = {}
+
+    let dater = new Date();
+    let month = dater.getMonth() + 1;
+    let date = dater.getDate();
+    let year = dater.getFullYear();
+    console.log("\tGot date as: " + month + "/" + date + "/" + year);
+
+    obj.month = month;
+    obj.day = date;
+    obj.year = year;
+
+    obj.truth = false
+    obj.error = false
+    obj.type = "dog"
+    obj.imgsrc = "https://assets3.thrillist.com/v1/image/2622128/1200x600/crop"
+
+    obj.CSSLink = "https://jbarkerwebdev.sites.tjhsst.edu/styles/css?name=dcf";
+
+    res.render("dcf2.hbs", obj);
+});
+
+app.get('/cat', function (req, res) {
+
+    console.log('user landed at cat');
+
+    let obj = {}
+
+    let dater = new Date();
+    let month = dater.getMonth() + 1;
+    let date = dater.getDate();
+    let year = dater.getFullYear();
+    console.log("\tGot date as: " + month + "/" + date + "/" + year);
+
+    obj.month = month;
+    obj.day = date;
+    obj.year = year;
+
+    obj.truth = false
+    obj.error = false
+    obj.type = "cat"
+    obj.imgsrc = "https://d17fnq9dkz9hgj.cloudfront.net/breed-uploads/2018/08/beagle-card-medium.jpg?bust=1535569257"
+    
+
+    obj.CSSLink = "https://jbarkerwebdev.sites.tjhsst.edu/styles/css?name=dcf";
+
+    res.render("dcf2.hbs", obj);
+});
+
+app.get('/fish', function (req, res) {
+
+    console.log('user landed at fish');
+
+    let obj = {}
+
+    let dater = new Date();
+    let month = dater.getMonth() + 1;
+    let date = dater.getDate();
+    let year = dater.getFullYear();
+    console.log("\tGot date as: " + month + "/" + date + "/" + year);
+
+    obj.month = month;
+    obj.day = date;
+    obj.year = year;
+
+    obj.CSSLink = "https://jbarkerwebdev.sites.tjhsst.edu/styles/css?name=dcf";
+
+    res.render("instructions.hbs", obj);
+});
+
+app.get('/pet', function (req, res) {
+
+    console.log('user landed at pet');
+
+    let obj = {}
+
+    let dater = new Date();
+    let month = dater.getMonth() + 1;
+    let date = dater.getDate();
+    let year = dater.getFullYear();
+    console.log("\tGot date as: " + month + "/" + date + "/" + year);
+
+    obj.month = month;
+    obj.day = date;
+    obj.year = year;
+
+    obj.CSSLink = "https://jbarkerwebdev.sites.tjhsst.edu/styles/css?name=dcf";
+
+    if(req.query.type == "dog"){
+        obj.type = "dog"
+        obj.truth = true;
+        obj.error = false
+        obj.imgsrc = "https://d17fnq9dkz9hgj.cloudfront.net/breed-uploads/2018/08/beagle-card-medium.jpg?bust=1535569257"
+    }
+    else if(req.query.type == "cat"){
+        obj.type = "cat"
+        obj.truth = true;
+        obj.error = false
+        obj.imgsrc = "https://assets3.thrillist.com/v1/image/2622128/1200x600/crop"
+    }
+    else{
+        obj.truth = true;
+        obj.error = true
+    }
+
+    res.render("dcf2.hbs", obj);
+});
+
+app.get('/styles/css', function (req, res) {
+    if (req.query.name == "styles") {
         res.sendFile(__dirname + "/css/styles.css");
     }
-    if(req.query.name == "dcf"){
+    else if (req.query.name == "dcf") {
         res.sendFile(__dirname + "/css/dog-cat-fish.css");
     }
 });
 
-var listener = app.listen( process . env . PORT || 8080 , process . env . HOST || "0.0.0.0" , function() {
+var listener = app.listen(process.env.PORT || 8080, process.env.HOST || "0.0.0.0", function () {
 
-    console.log( "Express server started" );
+    console.log("Express server started");
 
 });

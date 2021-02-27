@@ -35,3 +35,6 @@ img {
 .no-shadow{
     text-shadow: none;
 }
+title{
+    text-transform: capitalize;
+}

@@ -29,31 +29,7 @@
             {{/each}}
         </ul>
         <a href = "/">main page</a>
-        {{else}}
-            {{#unless error}}
-                <h1>
-                    Dog-Cat-Fish
-                </h1>
-                <p>
-                    Here's a {{type}}.
-                </p>
-                    {{#unless truth}}
-                        <p class="psych">
-                            JUST KIDDING! It's not a {{type}}, you're so silly.
-                        </p>
-                    {{/unless}}
-                <img src={{imgsrc}}>
-            {{else}}
-                <h1>
-                    Error: Page Not Found :(
-                </h1>
-            {{/unless}}
-            <p class="instructions">
-                Ask the fish for instructions.
-            </p>
-            <a href = "/dogcatfish">main page</a>
         {{/if}}
-        
         <p>
             <br>Today's date is {{month}}/{{day}}/{{year}}.
         </p>
