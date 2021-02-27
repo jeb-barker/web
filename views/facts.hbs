@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href={{CSSLink}}>
+    <title class="head">
+        Facts About...
+    </title>
+</head>
+
+<body>
+    {{#unless error}}
+    <div>
+        <h1>
+            Facts about...<br>{{topic.name}}!
+        </h1>
+        <ol>
+            {{#each topic.facts}}
+            <li>    {{this}}</li>
+            <br>
+            {{/each}}
+        </ol>
+    </div>
+    <div>
+        <form action="/facts" method="GET">
+        <label for="topic">Pick the Topic</label>
+        <select name="topic" id="topic">
+            {{#each topics}}
+            <option value={{this.name}}>{{this.name}}</option>
+            {{/each}}
+        <label>Number of facts:</label>
+        <input type="range" min="1" max="40" value="10" class="slider" id="myRange">
+        <button>Update</button>
+    </div>
+    {{/unless}}
+
+</body>
+<hr>
+<a href="https://thechessworld.com/articles/general-information/40-facts-about-chess-most-people-dont-know/">Credit goes to this site :)</a>
+
+</html>
