@@ -28,7 +28,8 @@ app.get('/', function (req, res) {
 
     obj.labs = [
         { title: "Dog-Cat-Fish", link: "/dogcatfish" },
-        { title: "Facts About", link: "/facts" }
+        { title: "Facts About", link: "/facts" },
+        { title: "APOD", link: "/apod"}
     ]//TODO: Add link
 
     res.render("index.hbs", obj);
