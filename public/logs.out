@@ -1,21 +1,35 @@
 Express server started
-user landed at page
-	Got date as: 2/11/2021
-user landed at page
-	Got date as: 2/11/2021
-user landed at page
-	Got date as: 2/11/2021
-user landed at page
-	Got date as: 2/11/2021
-user landed at page
-	Got date as: 2/11/2021
-user landed at page
-	Got date as: 2/11/2021
-user landed at page
-	Got date as: 2/11/2021
-user landed at page
-	Got date as: 2/11/2021
-user landed at page
-	Got date as: 2/11/2021
-user landed at page
-	Got date as: 2/11/2021
+user landed at main page
+	Got date as: 5/26/2021
+Error: ENOENT: no such file or directory, stat '/site/routes/css/styles.css'
+user landed at Dog-Cat-Fish
+Error: ENOENT: no such file or directory, stat '/site/routes/css/styles.css'
+user landed at pet
+	Got date as: 5/26/2021
+Error: ENOENT: no such file or directory, stat '/site/routes/css/dog-cat-fish.css'
+user landed at main page
+	Got date as: 5/26/2021
+Error: ENOENT: no such file or directory, stat '/site/routes/css/styles.css'
+user landed at facts
+Error: ENOENT: no such file or directory, stat '/site/routes/css/facts.css'
+user landed at facts
+Error: ENOENT: no such file or directory, stat '/site/routes/css/facts.css'
+user landed at facts
+Error: ENOENT: no such file or directory, stat '/site/routes/css/facts.css'
+user landed at facts
+Error: ENOENT: no such file or directory, stat '/site/routes/css/facts.css'
+user landed at facts
+Error: ENOENT: no such file or directory, stat '/site/routes/css/facts.css'
+user landed at facts
+Error: ENOENT: no such file or directory, stat '/site/routes/css/facts.css'
+user landed at facts
+Error: ENOENT: no such file or directory, stat '/site/routes/css/facts.css'
+user landed at facts
+Error: ENOENT: no such file or directory, stat '/site/routes/css/facts.css'
+user landed at facts
+Error: ENOENT: no such file or directory, stat '/site/routes/css/facts.css'
+user landed at facts
+Error: ENOENT: no such file or directory, stat '/site/routes/css/facts.css'
+user landed at main page
+	Got date as: 5/26/2021
+Error: ENOENT: no such file or directory, stat '/site/routes/css/styles.css'

@@ -1,3 +1,22 @@
 p{
     text-align: left;
 }
+ol{
+    margin-left:30px;
+    font-family: Times New Roman;
+    font-size: 20px;
+}
+a{
+    font-size:10px;
+}
+h1{
+    font-size:40px;
+    text-align: center;
+}
+body{
+    color:magenta;
+}
+html{
+    background-color: cyan;
+    color:magenta;
+}

@@ -1,6 +1,6 @@
 var express = require('express');
 var hbs = require('hbs');
-var routes = require('./routes');
+var routes = require('../routes');
 
 var app = express();
 
