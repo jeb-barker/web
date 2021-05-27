@@ -8,24 +8,26 @@ module.exports.run_setup = function(app){
 
 function accumulate_input(req, res, next){
     var url = 'https://api.weather.gov/points/'
-    if(req.query.lat !== "" && req.query.lat in req.query){
-        
-        url += parseFloat(req.query.lat).toFixed(4) + ',';
+    console.log(url)
+    if('lat' in req.query){
+        console.log(url)
+        url = url + req.query.lat + ",";
     }
     else{
         let error = true
-        res.render('weather.hbs')
+        res.render('weather.hbs', {})
     }
-    if(req.query.long !== "" && req.query.long in req.query){
-        url += parseFloat(req.query.long).toFixed(4) + "";
+    if('long' in req.query){
+        url = url + req.query.lat;
     }
     else{
         let error = true
-        res.render('weather.hbs')
+        res.render('weather.hbs', {})
     }
+    console.log(url)
     let options = {headers:{'User-Agent': 'request'}};
     let dat = "";
-    https.get(url, function(response){
+    https.get(url, options, function(response){
         response.on('data', function(chunk){
             dat+=chunk;
             console.log("DAT= " + dat)
@@ -42,8 +44,6 @@ function accumulate_input(req, res, next){
             
             next(req, res);
         })
-    }).on('error', function(e){
-        console.log(e.message);
     })
 }
 
