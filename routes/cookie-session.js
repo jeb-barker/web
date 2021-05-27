@@ -5,9 +5,11 @@ module.exports.run_setup = function(app){
 
     app.get('/cookieclicker', function(req, res){
         if('reset' in req.query || !('vc' in req.session)){
-            req.session.vc = 1
+            req.session.vc = 0
         }
         req.session.vc += 1
-        
+        obj = {}
+        obj.vc = req.session.vc
+        res.render('cookie.hbs', obj)
     })
 }
