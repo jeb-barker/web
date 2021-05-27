@@ -6,13 +6,47 @@
         </title>
     </head>
     <body>
+        {{#unless error}}
+        <h1>
+            Weather Forecast for {{origin.properties.relativeLocation.properties.city}}, {{origin.properties.relativeLocation.properties.state}}
+        </h1>
+        <h4>
+            From {{properties.periods.[0].name}} into {{properties.periods.[13].name}}.
+        </h4>
+        <table border="1" cellpadding="15">
+        <tr>
+            <td><b>Time</b></td>
+            <td><b>Temp</b></td>
+            <td><b>Wind</b></td>
+            <td><b>Weather</b></td>
+        </tr>
+        {{#each properties.periods}}
+        <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.temperature}}<span>&#176;</span> {{this.temperatureUnit}}</td>
+            <td>{{this.windDirection}} @ {{this.windSpeed}}</td>
+            <td><img src="{{this.icon}}"><br>{{this.shortForecast}}<img></td>
+        </tr>
+        {{/each}}
+        </table>
+        {{/unless}}
+        {{#if error}}
+        <p>Oooooopsie there was a problem (maybe you forgot coordinates)! {{detail}}. <br>Try refreshing the page, or if the problem persists, contact me :))</p>
+        {{/if}}
         <br>
         <div>
-        <form action="/apod" method="GET">
-        <label for="date">Date:</label>
+        <form action="/weather" method="GET">
+        <label for="lat">Latitude:</label>
         <br>
-        <input type="date" id="date" name="date">
+        <input type="text" id="lat" name="lat">
+        <br>
+        <label for="long">Longitude:</label>
+        <br>
+        <input type="text" id="long" name="long">
+        <br>
         <button>Submit</button>
     </div>
+    <hr>
+    <a href="/">main page</a>
     </body>
 </html>

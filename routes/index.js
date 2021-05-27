@@ -3,6 +3,7 @@ var facts = require('./facts.js');
 var css = require('./css.js');
 var apod = require('./apod.js');
 var weather = require('./weather.js');
+var cookie = require('./cookie-session.js')
 
 module.exports.do_setup = function(app){
     dcf.run_setup(app);
@@ -10,4 +11,5 @@ module.exports.do_setup = function(app){
     css.run_setup(app);
     apod.run_setup(app);
     weather.run_setup(app);
+    cookie.run_setup(app);
 }
