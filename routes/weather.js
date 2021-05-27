@@ -1,16 +1,21 @@
+var https = require('https');
 // weather forecast data from weather.gov
 function accumulate_input(req, res, next){
     var url = 'https://api.weather.gov/points/'
-    if(req.query.lat !== ""){
+    if(req.query.lat !== "" && req.query.lat !== null){
         
-        url += parseFloat(req.query.lat.toFixed(4)) + ",";
+        url += parseFloat(req.query.lat).toFixed(4) + ",";
     }
     else{
         let error = true
         res.render('weather.hbs')
     }
-    if(req.query.long !== ""){
-        url += parseFloat(req.query.long.toFixed(4)) + "";
+    if(req.query.long !== "" && req.query.long !== null){
+        url += parseFloat(req.query.long).toFixed(4) + "";
+    }
+    else{
+        let error = true
+        res.render('weather.hbs')
     }
     let options = {headers:{'User-Agent': 'request'}};
     let dat = "";
