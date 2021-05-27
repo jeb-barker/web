@@ -14,7 +14,7 @@ function input(req, res){
         })
         response.on('end', function(){
             let obj = JSON.parse(dat);
-            res.locals.inJSON = dat
+            
             if(obj.copyright !== null){
                 obj.author = true
             }
