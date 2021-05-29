@@ -37,6 +37,7 @@ module.exports.run_setup = function(app){
             next()
         }
         else{
+            console.log(res)
             res.render('cookieauth.hbs', {'auth-link': authorizationUri, 'auth': false})
         }
     }
@@ -78,10 +79,20 @@ module.exports.run_setup = function(app){
         })
     }
     
-    app.get('/ionauthcookie', [check_auth, check_refresh, getUserName], function(res, req){
+    app.get('/ionauthcookie', [check_auth, check_refresh, getUserName],  function(req, res){
+        console.log("******\n",req)
         let profile = res.locals.profile;
         let first_name = profile.first_name;
-        res.render('cookieauth.hbs', {'name': first_name, 'auth': true})
+        if('reset' in req.query || !('vc' in req.session)){
+            req.session.vc = 0
+        }
+        req.session.vc += 1
+        res.render('cookieauth.hbs', {'name': first_name, 'auth': true, 'vc': req.session.vc})
+    })
+    
+    app.get('/ionauthcookie/logout', function(req, res){
+        delete req.session.authenticated
+        res.redirect('/ionauthcookie?reset=true')
     })
 
     async function codeToToken(req, res, next){

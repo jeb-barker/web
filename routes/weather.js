@@ -44,7 +44,7 @@ function accumulate_input(req, res, next){
                 res.render('weather.hbs', obj)
                 return null
             }
-            if(req.query.detail === true){
+            if(req.query.detail == 'true'){
                 res.locals.requestURL = obj.properties.forecastHourly;
             }
             else{
@@ -78,6 +78,12 @@ function display(req, res){
     let dat = res.locals.forecast;
     let obj = JSON.parse(dat);
     obj['origin'] = res.locals.originJSON
+    if(req.query.detail == 'true'){
+        for(let x = 0; x < obj.properties.periods.length; x++){
+            obj.properties.periods[x].name = obj.properties.periods[x].startTime.substring(5, 10)
+            obj.properties.periods[x].name += " " + obj.properties.periods[x].startTime.substring(11, 16)
+        }
+    }
     console.log(JSON.stringify(obj))
     console.log("ORGIGIN JSON:\n\n\n" + JSON.stringify(res.locals.originJSON))
     res.render("weather.hbs", obj);
