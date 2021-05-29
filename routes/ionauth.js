@@ -3,6 +3,7 @@ const {AuthorizationCode} = require('simple-oauth2');
 var https = require('https');
 
 var options = { headers : { 'User-Agent' : 'request' } } ;
+const OAUTH_SCOPE = 'read';
 
 var ion_client_id     = 'Rev197ZRHOebuX20NappOgmWeWgArB4xwMlE0iXp';
 var ion_client_secret = 'gnc7Hctn6zQKqL1e9NNqRDsKhrAgzQjhVcm2AnMwyiHoUvMMV3O0o6rA3DDIIg9hhUku444BwVuGukcyK9YxXH7vHfq1VctFeTMsWQBDCDuWH6n6FPC05WUCGh1Jhu6k';
@@ -30,12 +31,6 @@ var authorizationUri = client.authorizeURL({
 
 module.exports.run_setup = function(app){
     app.use(cookieSession({name: "ionauth-cookie", keys: ['ionauthKey', 'secretionauthKey', 'superduperextrasecretcookieKey']}))
-
-    app.get('/ionauthcookie', [check_auth, check_refresh, getUserName], function(res, req){
-        var profile = res.locals.profile;
-        var first_name = profile.first_name;
-        res.render('cookieauth.hbs', {'name': first_name, 'auth': true})
-    })
 
     function check_auth(req, res, next){
         if('authenticated' in req.session){
@@ -74,6 +69,7 @@ module.exports.run_setup = function(app){
             })
             response.on('end', function(){
                 res.locals.profile = JSON.parse(dat)
+                console.log(JSON.stringify(res.locals.profile))
                 next()
             })
         }).on('error', function(error){
@@ -81,6 +77,12 @@ module.exports.run_setup = function(app){
             next(error)
         })
     }
+    
+    app.get('/ionauthcookie', [check_auth, check_refresh, getUserName], function(res, req){
+        let profile = res.locals.profile;
+        let first_name = profile.first_name;
+        res.render('cookieauth.hbs', {'name': first_name, 'auth': true})
+    })
 
     async function codeToToken(req, res, next){
         let code = req.query.code
@@ -97,7 +99,7 @@ module.exports.run_setup = function(app){
         }
         catch(error){
             console.log('Access Token Error: ', error.message)
-            res.send(502)
+            res.send(503)
         }
     }
 
