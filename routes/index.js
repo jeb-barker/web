@@ -5,6 +5,7 @@ var apod = require('./apod.js');
 var weather = require('./weather.js');
 var cookie = require('./cookie-session.js')
 var ionauthcookie = require('./ionauth.js')
+var sqlclicker = require('./sqlclicker.js')
 
 module.exports.do_setup = function(app){
     dcf.run_setup(app);
@@ -14,4 +15,5 @@ module.exports.do_setup = function(app){
     weather.run_setup(app);
     cookie.run_setup(app);
     ionauthcookie.run_setup(app);
+    sqlclicker.run_setup(app);
 }
