@@ -16,7 +16,7 @@ const OAUTH_SCOPE = 'read';
 
 var ion_client_id     = 'Rev197ZRHOebuX20NappOgmWeWgArB4xwMlE0iXp';
 var ion_client_secret = 'gnc7Hctn6zQKqL1e9NNqRDsKhrAgzQjhVcm2AnMwyiHoUvMMV3O0o6rA3DDIIg9hhUku444BwVuGukcyK9YxXH7vHfq1VctFeTMsWQBDCDuWH6n6FPC05WUCGh1Jhu6k';
-var ion_redirect_uri  = 'https://jbarkerwebdev.sites.tjhsst.edu/sql_login_helper';
+var ion_redirect_uri  = 'https://localhost:8080/sql_login_helper';
 
 var client = new AuthorizationCode(
     {
@@ -118,17 +118,16 @@ module.exports.run_setup = function(app){
                 })
             })
             connection.end()
-            connection.release()
         }
+        var obj = {}
         connection.connect(function(err){
             if(err) throw err
             let sql = "SELECT id,fname,visitcount FROM sql_clicker WHERE id=" + profile
             connection.query(sql, function(err, results, fields){
-                var obj = JSON.parse(JSON.stringify(results[0]))
+                obj = JSON.parse(JSON.stringify(results[0]))
             })
         })
         connection.end()
-        connection.release()
         
         obj.visitcount += 1
         connection.connect(function(err){
@@ -154,7 +153,7 @@ module.exports.run_setup = function(app){
         
         let options = {
             'code': code,
-            'redirect-uri': 'https://jbarkerwebdev.sites.tjhsst.edu/sql_login_helper',
+            'redirect-uri': ion_redirect_uri,
             'scope': OAUTH_SCOPE
         }
 

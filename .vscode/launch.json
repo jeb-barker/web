@@ -16,11 +16,11 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "runtimeExecutable": "D:\\Program Files\\nodejs",
+            "runtimeExecutable": "D:\\Program Files\\nodejs\\node.exe",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\index.js"
+            "program": "${workspaceFolder}\\public\\index.js"
         }
     ]
 }
