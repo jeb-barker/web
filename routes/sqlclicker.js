@@ -3,15 +3,10 @@ const {AuthorizationCode} = require('simple-oauth2');
 var https = require('https');
 var mysql = require('mysql');
 var connection = mysql.createConnection( 
-
   {
-
     host: process.env.DIRECTOR_DATABASE_HOST,
-
     user: process.env.DIRECTOR_DATABASE_USERNAME,
-
     password: process.env.DIRECTOR_DATABASE_PASSWORD,
-
     database: process.env.DIRECTOR_DATABASE_NAME
   }
 )
@@ -102,6 +97,7 @@ module.exports.run_setup = function(app){
                         }
                     })
                 })
+                connection.end()
                 next()
             })
         }).on('error', function(error){
@@ -121,6 +117,8 @@ module.exports.run_setup = function(app){
                     
                 })
             })
+            connection.end()
+            connection.release()
         }
         connection.connect(function(err){
             if(err) throw err
@@ -129,6 +127,8 @@ module.exports.run_setup = function(app){
                 var obj = JSON.parse(JSON.stringify(results[0]))
             })
         })
+        connection.end()
+        connection.release()
         
         obj.visitcount += 1
         connection.connect(function(err){
@@ -138,6 +138,7 @@ module.exports.run_setup = function(app){
                 
             })
         })
+        connection.end()
         obj.auth = true
         res.render('sqlclicker.hbs', obj)
     })
