@@ -33,7 +33,8 @@ app.get('/', function (req, res) {
         { title: "Weather Forecast", link: "/weather"},
         { title: "Cookie Clicker", link: "/cookieclicker"},
         { title: "ION Authentication Clicker", link: "/ionauthcookie"},
-        { title: "SQL Cookie Clicker", link: "/sqlclicker"}
+        { title: "SQL Cookie Clicker", link: "/sqlclicker"},
+        { title: "Jebchess", link: "/jebchess"}
     ]//TODO: Add link
 
     res.render("index.hbs", obj);

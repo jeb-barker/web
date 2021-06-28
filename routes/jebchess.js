@@ -1,4 +1,3 @@
-const { Chess } = require('./chess.js')
 var https = require('https');
 
 
