@@ -1,4 +1,1 @@
 Express server started
-user landed at main page
-	Got date as: 6/28/2021
-Error: ENOENT: no such file or directory, stat '/site/routes/css/styles.css'

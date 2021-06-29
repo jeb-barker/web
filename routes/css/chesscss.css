@@ -1,0 +1,29 @@
+table{
+    width: 100%;
+    max-height: 95vh;
+    float: left;
+    border-collapse: collapse;
+    overflow: auto;
+}
+.inner{
+    width: 95vh;
+    float: left;
+    font-family: Trebuchet MS;
+}
+.table-move{
+    text-align: center;
+    width: 175px;
+}
+.table-movenumber{
+    padding: 7px;
+    width: 13px;
+}
+tr:hover 
+{
+    background-color: #f5f5f5;
+}
+#moveList{
+    overflow: auto;
+    max-height: 95vh;
+    border: 10px;
+}

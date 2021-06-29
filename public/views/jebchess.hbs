@@ -2,21 +2,89 @@
 <head>
     <meta charset="UTF-8">
     <title>Jebchess</title>
-    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0"/>
-    <link rel="stylesheet" href="styles/examples.css"/>
-    <link rel="stylesheet" href="../styles/cm-chessboard.css"/>
+    <meta name="viewport" content="width=5px, user-scalable=yes, initial-scale=0.5"/>
+    <link rel="stylesheet" href="./styles/css?name=chesscss"/>
+    <link rel="stylesheet" href="./styles/css?name=cm"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-<div class="board" id="board"></div>
-
+    <h1>
+        Welcome to Jebchess!
+    </h1>
+    <br>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<div class="table-wrap">
+    <div style="" class="board inner" id="board"></div>
+    <div class="inner" id="moveList" style="float:left;">
+        <table id="table"></table>
+    </div>
+</div>
+<pre>
+</pre>
 <div id="output"></div>
 <!--suppress JSUnresolvedFunction -->
 <script type="module">
-    import {INPUT_EVENT_TYPE, COLOR, Chessboard, MARKER_TYPE} from "../src/cm-chessboard/Chessboard.js"
+    import {INPUT_EVENT_TYPE, COLOR, Chessboard, MARKER_TYPE} from "./styles/css?name=chb"
 
     const chess = new Chess()
+    
+    
+    
+    function updateMoveList(history) {
+        // get the reference for the body
+        var body = document.getElementById("moveList");
 
+          // creates a <table> element and a <tbody> element
+          var tbl = document.getElementById("table");
+          body.removeChild(body.lastChild)
+          tbl = document.createElement("table")
+          var tblBody = document.createElement("tbody");
+        
+          // creating all cells
+          for (var i = 0; i < history.length; i+=2) {
+            // creates a table row
+            var row = document.createElement("tr");
+        
+            for (var j = 0; j < 3; j++) {
+              // Create a <td> element and a text node, make the text
+              // node the contents of the <td>, and put the <td> at
+              // the end of the table row
+              var cell = document.createElement("td");
+              let tbltext = ""
+              if (j === 0) {
+                  tbltext = "" + (i/2 + 1) + "."
+              }
+              else{
+                  tbltext += history[i+j-1]
+              }
+              var cellText = document.createTextNode(tbltext);
+              if (j != 0){
+                  cell.className = "table table-move"
+              }
+              else{
+                  cell.className = "table table-movenumber"
+              }
+              cell.appendChild(cellText);
+              row.appendChild(cell);
+            }
+        
+            // add the row to the end of the table body
+            tblBody.appendChild(row);
+    }
+        
+          // put the <tbody> in the <table>
+          tbl.appendChild(tblBody);
+          // appends <table> into <body>
+          body.appendChild(tbl);
+          // sets the border attribute of tbl to 2;
+          tbl.setAttribute("border", "2");
+        }
+
+    
+    
+    
     function inputHandler(event) {
         console.log("event", event)
         event.chessboard.removeMarkers(undefined, MARKER_TYPE.dot)
@@ -32,29 +100,23 @@
             if (result) {
                 event.chessboard.disableMoveInput()
                 event.chessboard.setPosition(chess.fen())
+                updateMoveList(chess.history())
                 const possibleMoves = chess.moves({verbose: true})
-                if (possibleMoves.length > 0) {
-                    https.get('https://jeb-chess.sites.tjhsst.edu/ai?fen='+chess.fen(), function(response){
-                        var dat = ""
-                        response.on('data', function(chunk){
-                            dat += chunk
-                        })
-                        response.on('end', function(){
-                            console.log('got move: ',dat)
-                        })
-                    }).on('error', function(error){
-                        console.log(error.message)
-                        next(error)
-                    })
+                if (possibleMoves.length > 0) { //the url below should be ai1 for candidate or ai2 for best
+                    $.get('https://jeb-chess.sites.tjhsst.edu/ai2?fen='+chess.fen()+"&t=.1", function(data, status){
+                        var dat = data
+                    
                     //for random moves
                     // const randomIndex = Math.floor(Math.random() * possibleMoves.length)
                     // const randomMove = possibleMoves[randomIndex]
-                    setTimeout(() => { // smoother with 500ms delay
-                        // chess.move({from: randomMove.from, to: randomMove.to})
-                        chess.move(dat, {sloppy: true})
-                        event.chessboard.enableMoveInput(inputHandler, COLOR.white)
-                        event.chessboard.setPosition(chess.fen())
-                    }, 500)
+                        setTimeout(() => { // smoother with 500ms delay
+                            // chess.move({from: randomMove.from, to: randomMove.to})
+                            chess.move(dat, {sloppy: true})
+                            event.chessboard.enableMoveInput(inputHandler, COLOR.white)
+                            event.chessboard.setPosition(chess.fen())
+                            updateMoveList(chess.history())
+                        }, 500)
+                    })
                 }
             } else {
                 console.warn("invalid move", move)
@@ -65,11 +127,25 @@
 
     const board = new Chessboard(document.getElementById("board"), {
         position: chess.fen(),
-        sprite: {url: "../assets/images/chessboard-sprite-staunty.svg"},
-        style: {moveMarker: MARKER_TYPE.square, hoverMarker: undefined},
+        sprite: {url: "./styles/css?name=staunty"},
+        style: {moveMarker: MARKER_TYPE.square, hoverMarker: undefined, aspectRation:.5},
+        responsive: true,
         orientation: COLOR.white
     })
     board.enableMoveInput(inputHandler, COLOR.white)
+    
+    jQuery(document).ready(function($) {
+        $(".table-movenumber").click(function() {
+            history = chess.history()
+            console.log("Made it here")
+            let m = $(this).val().split(".")[0]
+            chess.reset()
+            for(var a = 0; a < (+m*2); a++){
+                chess.move(history[a])
+            }
+            updateMoveList(chess.history())
+        });
+    });
 </script>
 </body>
 </html>
