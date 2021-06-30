@@ -18,6 +18,10 @@
     "https": "^1.0.0",
     "JSON": "^1.0.0",
     "mysql": "^2.18.1",
+    "passport": "^0.4.1",
+    "passport-google-oauth": "^2.0.0",
+    "passport-google-oauth2": "^0.2.0",
+    "passport-google-oauth20": "^2.0.0",
     "simple-oauth2": "^4.2.0"
   }
 }
