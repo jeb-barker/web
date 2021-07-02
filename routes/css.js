@@ -39,5 +39,8 @@ module.exports.run_setup = function(app){
         else if (req.query.name == "chesscss") {
             res.sendFile(__dirname + "/css/chesscss.css");
         }
+        else if (req.query.name == "chesssrc") {
+            res.sendFile("/site/src/jebchesssrc.js");
+        }
     });
 }

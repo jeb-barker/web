@@ -10,6 +10,7 @@ var google_redirect_uri  = 'https://jbarkerwebdev.sites.tjhsst.edu/jebchess/logi
 var userProfile = ""
 
 var mysql = require('mysql');
+console.log(process.env.DIRECTOR_DATABASE_HOST)
 var connection = mysql.createConnection( 
   {
     host: process.env.DIRECTOR_DATABASE_HOST,
@@ -18,6 +19,37 @@ var connection = mysql.createConnection(
     database: process.env.DIRECTOR_DATABASE_NAME
   }
 )
+
+class Database {
+    constructor( config ) {
+        this.connection = mysql.createConnection( config );
+    }
+    query( sql, args ) {
+        return new Promise( ( resolve, reject ) => {
+            this.connection.query( sql, args, ( err, rows ) => {
+                if ( err )
+                    return reject( err );
+                resolve( rows );
+            } );
+        } );
+    }
+    close() {
+        return new Promise( ( resolve, reject ) => {
+            this.connection.end( err => {
+                if ( err )
+                    return reject( err );
+                resolve();
+            } );
+        } );
+    }
+}
+
+var database = new Database({
+    host: process.env.DIRECTOR_DATABASE_HOST,
+    user: process.env.DIRECTOR_DATABASE_USERNAME,
+    password: process.env.DIRECTOR_DATABASE_PASSWORD,
+    database: process.env.DIRECTOR_DATABASE_NAME
+  })
 
 module.exports.run_setup = function(app){
     app.use(cookieSession({name: "google-cookie", keys: ['googleauthKey', 'secretionauthKey', 'superduperextrasecretcookiegoogleKey']}))
@@ -51,20 +83,47 @@ module.exports.run_setup = function(app){
     })
     
     app.get('/jebchess/play', function(req, res){
-        if (userProfile === ""){
-            res.redirect('/jebchess')
+        if (userProfile !== ""){
+           res.render('jebchess.hbs', {}) 
         }
-        console.log(res.locals.userProfile)
-        res.render('jebchess.hbs', {})
+        else{
+            res.redirect('/jebchess/login')
+        }
+        //console.log(userProfile)
+        
     })
     
     app.get('/jebchess/logout', function(req, res){
-        delete req.session.authenticated
-        res.redirect('/ionauthcookie?reset=true')//TODO
+        res.redirect('/jebchess')//TODO
     })
+    
+    function getquerydata(str){
+        let getidsql = str
+        return database.query(getidsql)
+    }
 
-    app.get('/jebchess/login_helper',passport.authenticate("google"),(req,res)=>{
-        userProfile = req.user
+    app.get('/jebchess/login_helper', passport.authenticate("google"), async (req,res)=>{
+        userProfile = req.users
+        //var results = ""
+        let results = await getquerydata("SELECT id FROM chess_players")
+        let newUser = true
+        console.log("results: ", results)
+        for (let x=0; x<results.length; x++){
+            console.log(results[x].id, " --- ", req.user.id)
+            if (results[x].id === req.user.id){
+                newUser = false
+                //res.redirect('/jebchess/play')
+                break;
+            }
+        }
+        
+        //insert new user into chess_players ONLY IF they aren't in chess_players
+        if (newUser){
+            var sql = "INSERT INTO chess_players (id, name, secondary_name, games_won) VALUES (\'"+req.user.id+"\', \'"+req.user.displayName+"\', \'"+req.user.emails[0].value+"\', 0)";
+            console.log(sql)
+            await database.query(sql)
+        }
         res.redirect('/jebchess/play')
+                
     });
 }

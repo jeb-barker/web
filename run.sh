@@ -2,7 +2,7 @@
 
 # comment
 
-exec node index.js &> logs.out
+exec node index.js >> logs.out 2>&1
 
 #
 # then in terminal

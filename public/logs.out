@@ -1,15 +1,76 @@
+director-mysql
+_______________________
 Express server started
-undefined
+director-mysql
+_______________________
+Express server started
+results:  [
+  RowDataPacket { id: '102529385419432018835' },
+  RowDataPacket { id: '105790895493853508022' },
+  RowDataPacket { id: '111144268931321206696' },
+  RowDataPacket { id: '116264767626572588517' }
+]
+102529385419432018835  ---  116264767626572588517
+105790895493853508022  ---  116264767626572588517
+111144268931321206696  ---  116264767626572588517
+116264767626572588517  ---  116264767626572588517
+node:internal/process/promises:227
+          triggerUncaughtException(err, true /* fromPromise */);
+          ^
+
 Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
     at new NodeError (node:internal/errors:278:15)
     at ServerResponse.setHeader (node:_http_outgoing:563:11)
     at ServerResponse.header (/site/node_modules/express/lib/response.js:771:10)
-    at ServerResponse.send (/site/node_modules/express/lib/response.js:170:12)
-    at done (/site/node_modules/express/lib/response.js:1008:10)
-    at /site/node_modules/hbs/lib/hbs.js:90:11
-    at Object.done (/site/node_modules/hbs/lib/async.js:74:20)
-    at /site/node_modules/hbs/lib/hbs.js:85:20
-    at FSReqCallback.readFileAfterClose [as oncomplete] (node:internal/fs/read_file_context:75:3)
-undefined
-undefined
-undefined
+    at ServerResponse.location (/site/node_modules/express/lib/response.js:888:15)
+    at ServerResponse.redirect (/site/node_modules/express/lib/response.js:926:18)
+    at /site/routes/jebchess.js:125:13
+    at processTicksAndRejections (node:internal/process/task_queues:93:5) {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
+director-mysql
+_______________________
+Express server started
+director-mysql
+_______________________
+Express server started
+results:  [
+  RowDataPacket { id: '102529385419432018835' },
+  RowDataPacket { id: '105790895493853508022' },
+  RowDataPacket { id: '111144268931321206696' },
+  RowDataPacket { id: '116264767626572588517' }
+]
+102529385419432018835  ---  116264767626572588517
+105790895493853508022  ---  116264767626572588517
+111144268931321206696  ---  116264767626572588517
+116264767626572588517  ---  116264767626572588517
+node:internal/process/promises:227
+          triggerUncaughtException(err, true /* fromPromise */);
+          ^
+
+Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:278:15)
+    at ServerResponse.setHeader (node:_http_outgoing:563:11)
+    at ServerResponse.header (/site/node_modules/express/lib/response.js:771:10)
+    at ServerResponse.location (/site/node_modules/express/lib/response.js:888:15)
+    at ServerResponse.redirect (/site/node_modules/express/lib/response.js:926:18)
+    at /site/routes/jebchess.js:125:13
+    at processTicksAndRejections (node:internal/process/task_queues:93:5) {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
+director-mysql
+_______________________
+Express server started
+director-mysql
+_______________________
+Express server started
+results:  [
+  RowDataPacket { id: '102529385419432018835' },
+  RowDataPacket { id: '105790895493853508022' },
+  RowDataPacket { id: '111144268931321206696' },
+  RowDataPacket { id: '116264767626572588517' }
+]
+102529385419432018835  ---  116264767626572588517
+105790895493853508022  ---  116264767626572588517
+111144268931321206696  ---  116264767626572588517
+116264767626572588517  ---  116264767626572588517
