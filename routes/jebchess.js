@@ -52,7 +52,7 @@ var database = new Database({
   })
 
 module.exports.run_setup = function(app){
-    app.use(cookieSession({name: "google-cookie", keys: ['googleauthKey', 'secretionauthKey', 'superduperextrasecretcookiegoogleKey']}))
+    app.use(cookieSession({name: "google-cookie", keys: ['googleauthKey', 'secretionauthKey', 'superduperextrasecretcookiegoogleKey'], maxAge: 1000*60*30}))
 
     app.use(passport.initialize());
     app.use(passport.session());
@@ -84,13 +84,12 @@ module.exports.run_setup = function(app){
     
     app.get('/jebchess/play', function(req, res){
         if (userProfile !== ""){
-           res.render('jebchess.hbs', {}) 
+            console.log(req.user) 
+            res.render('jebchess.hbs', {}) 
         }
         else{
             res.redirect('/jebchess/login')
         }
-        //console.log(userProfile)
-        
     })
     
     app.get('/jebchess/logout', function(req, res){
@@ -103,8 +102,7 @@ module.exports.run_setup = function(app){
     }
 
     app.get('/jebchess/login_helper', passport.authenticate("google"), async (req,res)=>{
-        userProfile = req.users
-        //var results = ""
+        userProfile = req.user
         let results = await getquerydata("SELECT id FROM chess_players")
         let newUser = true
         console.log("results: ", results)
@@ -112,18 +110,22 @@ module.exports.run_setup = function(app){
             console.log(results[x].id, " --- ", req.user.id)
             if (results[x].id === req.user.id){
                 newUser = false
-                //res.redirect('/jebchess/play')
                 break;
             }
         }
         
         //insert new user into chess_players ONLY IF they aren't in chess_players
         if (newUser){
-            var sql = "INSERT INTO chess_players (id, name, secondary_name, games_won) VALUES (\'"+req.user.id+"\', \'"+req.user.displayName+"\', \'"+req.user.emails[0].value+"\', 0)";
+            userData = {personal:{}, chess:{}}
+            userData.personal.id = req.user.id
+            userData.personal.name = req.user.displayName
+            userData.personal.email = req.user.emails[0].value
+            userData.chess.games_won = 0
+            userData.chess.games_lost = 0
+            var sql = "INSERT INTO chess_players (id, name, data) VALUES (\'"+req.user.id+"\', \'"+req.user.displayName+"\', \'"+JSON.stringify(userData)+"\')";
             console.log(sql)
             await database.query(sql)
         }
         res.redirect('/jebchess/play')
-                
     });
 }
