@@ -82,10 +82,11 @@ module.exports.run_setup = function(app){
         res.render('jebchesslogin.hbs', {})
     })
     
-    app.get('/jebchess/play', function(req, res){
-        if (userProfile !== ""){
+    app.get('/jebchess/play', async function(req, res){
+        if (req.user){
             console.log(req.user) 
-            res.render('jebchess.hbs', {}) 
+            let userData = await database.query("SELECT data FROM chess_players WHERE id=\'"+req.user+"\'")
+            res.render('jebchess.hbs', JSON.parse(userData[0].data)) 
         }
         else{
             res.redirect('/jebchess/login')
