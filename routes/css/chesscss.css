@@ -1,14 +1,46 @@
-table{
-    width: 100%;
-    max-height: 95vh;
-    float: left;
+.board{
+    margin:2vw;
+}
+@media (max-width: 800px){
+    .inner{
+        width: 90vw;
+        height: 100vh;
+        align-self: center;
+    }
+    table{
+    width: 90vw;
+    max-height: 45vh;
     border-collapse: collapse;
     overflow: auto;
+    margin:2vw;
+    }
+    #moveList{
+    overflow: auto;
+    max-height: 100vw;
+    border: 10px;
+    margin-top:2vw;
 }
-.inner{
-    width: 95vh;
-    float: left;
-    font-family: Trebuchet MS;
+}
+@media (min-width: 800px){
+    .inner{
+        width: 45vw;
+        height: 45vh;
+        float: left;
+        font-family: Trebuchet MS;
+    }
+    table{
+        width: 100%;
+        max-height: 45vw;
+        float: left;
+        border-collapse: collapse;
+        overflow: auto;
+    }
+    #moveList{
+    overflow: auto;
+    max-height: 45vw;
+    border: 10px;
+    margin-top:2vw;
+}
 }
 .table-move{
     text-align: center;
@@ -22,8 +54,6 @@ tr:hover
 {
     background-color: #f5f5f5;
 }
-#moveList{
-    overflow: auto;
-    max-height: 95vh;
-    border: 10px;
+.logout{
+    clear: left;
 }

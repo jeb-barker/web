@@ -2,6 +2,7 @@ var cookieSession = require('cookie-session')
 const {AuthorizationCode} = require('simple-oauth2');
 var https = require('https');
 var passport = require('passport')
+
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 var GOOGLE_CLIENT_ID     = '221807810876-5hs2o3ver5hco9v5jmm6hcmqodb80e0j.apps.googleusercontent.com';
@@ -52,7 +53,7 @@ var database = new Database({
   })
 
 module.exports.run_setup = function(app){
-    app.use(cookieSession({name: "google-cookie", keys: ['googleauthKey', 'secretionauthKey', 'superduperextrasecretcookiegoogleKey'], maxAge: 1000*60*30}))
+    app.use(cookieSession({name: "google-cookie", keys: ['googleauthKey', 'secretionauthKey', 'superduperextrasecretcookiegoogleKey'], maxAge: 86400000}))
 
     app.use(passport.initialize());
     app.use(passport.session());
@@ -75,6 +76,22 @@ module.exports.run_setup = function(app){
         return cb(null, profile);
   }
 ));
+
+    app.get("/jebchess/src/update_current_game", async function(req, res){
+        //req.query.current_fen is passed in from the browser... need to authenticate first.
+        passport.authenticate("google")
+        if (req.user){
+            console.log(req.user) 
+            let userData = await database.query("SELECT data FROM chess_players WHERE id=\'"+req.user+"\'")
+            userData = JSON.parse(userData[0].data) 
+            userData.chess.current_game = req.query.current_fen
+            await database.query("UPDATE chess_players SET data=\'"+JSON.stringify(userData)+"\' WHERE id=\'"+req.user+"\'")
+            res.send('updated')
+        }
+        else{
+            res.redirect('/jebchess/login')
+        }
+    })
     
     app.get("/jebchess/login", passport.authenticate("google", {scope: ["profile", "email"]}));
     
@@ -83,6 +100,7 @@ module.exports.run_setup = function(app){
     })
     
     app.get('/jebchess/play', async function(req, res){
+        passport.authenticate("google")
         if (req.user){
             console.log(req.user) 
             let userData = await database.query("SELECT data FROM chess_players WHERE id=\'"+req.user+"\'")
@@ -93,8 +111,37 @@ module.exports.run_setup = function(app){
         }
     })
     
-    app.get('/jebchess/logout', function(req, res){
-        res.redirect('/jebchess')//TODO
+    app.get('/jebchess/logout', async function(req, res){
+        passport.authenticate("google")
+        if (req.user){
+            console.log(req.user) 
+            let userData = await database.query("SELECT data FROM chess_players WHERE id=\'"+req.user+"\'")
+            userData = JSON.parse(userData[0].data)
+            userData.chess.current_game = ""
+            await database.query("UPDATE chess_players SET data=\'"+JSON.stringify(userData)+"\' WHERE id=\'"+req.user+"\'")
+            res.redirect('/jebchess')
+        }
+        else{
+            res.redirect('/jebchess')
+        }
+    })
+    
+    app.get('/jebchess/src/get_current_game', async function(req, res){
+        passport.authenticate("google")
+        if (req.user){
+            let userData = await database.query("SELECT data FROM chess_players WHERE id=\'"+req.user+"\'")
+            userData = JSON.parse(userData[0].data)
+            console.log(userData.chess)
+            if (userData.chess.current_game){
+                res.send(userData.chess.current_game)
+            }
+            else{
+                res.send("")
+            }
+        }
+        else{
+            res.redirect('/jebchess/login')
+        }
     })
     
     function getquerydata(str){
@@ -123,6 +170,7 @@ module.exports.run_setup = function(app){
             userData.personal.email = req.user.emails[0].value
             userData.chess.games_won = 0
             userData.chess.games_lost = 0
+            userData.chess.current_game = ""
             var sql = "INSERT INTO chess_players (id, name, data) VALUES (\'"+req.user.id+"\', \'"+req.user.displayName+"\', \'"+JSON.stringify(userData)+"\')";
             console.log(sql)
             await database.query(sql)

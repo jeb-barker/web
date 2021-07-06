@@ -13,6 +13,7 @@
     "cm-chessboard": "^3.12.14",
     "cookie-session": "^1.4.0",
     "css": "^3.0.0",
+    "device-detector-js": "^2.2.10",
     "express": "^4.17.1",
     "hbs": "^4.1.1",
     "https": "^1.0.0",
