@@ -5,7 +5,8 @@ import {INPUT_EVENT_TYPE, COLOR, Chessboard, MARKER_TYPE} from "../styles/css?na
     $.get('https://jbarkerwebdev.sites.tjhsst.edu/jebchess/src/get_current_game', function(data, status){
         var chess = ''
         if (data !== ""){
-            chess = new Chess(data)
+            chess = new Chess()
+            chess.load_pgn(data)
         }
         else{
             chess = new Chess()
@@ -81,11 +82,11 @@ import {INPUT_EVENT_TYPE, COLOR, Chessboard, MARKER_TYPE} from "../styles/css?na
                 if (result) {
                     event.chessboard.disableMoveInput()
                     event.chessboard.setPosition(chess.fen())
-                    $.get('https://jbarkerwebdev.sites.tjhsst.edu/jebchess/src/update_current_game?current_fen='+chess.fen(), function(data, status){})
+                    $.get('https://jbarkerwebdev.sites.tjhsst.edu/jebchess/src/update_current_game?current_fen='+chess.pgn(), function(data, status){})
                     updateMoveList(chess.history())
                     possibleMoves = chess.moves({verbose: true})
                     if (possibleMoves.length > 0) { //the url below should be ai1 for candidate or ai2 for best
-                        $.get('https://jeb-chess.sites.tjhsst.edu/ai1?fen='+chess.fen()+"&t=5", function(data, status){
+                        $.get('https://jeb-chess.sites.tjhsst.edu/ai2?fen='+chess.fen()+"&t=5", function(data, status){
                             var dat = data
                         
                         //for random moves
@@ -96,7 +97,7 @@ import {INPUT_EVENT_TYPE, COLOR, Chessboard, MARKER_TYPE} from "../styles/css?na
                                 chess.move(dat, {sloppy: true})
                                 event.chessboard.enableMoveInput(inputHandler, COLOR.white)
                                 event.chessboard.setPosition(chess.fen())
-                                $.get('https://jbarkerwebdev.sites.tjhsst.edu/jebchess/src/update_current_game?current_fen='+chess.fen(), function(data, status){})
+                                $.get('https://jbarkerwebdev.sites.tjhsst.edu/jebchess/src/update_current_game?current_fen='+chess.pgn(), function(data, status){})
                                 updateMoveList(chess.history())
                             }, 500)
                         })
@@ -116,6 +117,7 @@ import {INPUT_EVENT_TYPE, COLOR, Chessboard, MARKER_TYPE} from "../styles/css?na
             orientation: COLOR.white
         })
         board.enableMoveInput(inputHandler, COLOR.white)
+        updateMoveList(chess.history())
     })
     
     //console.log(d)

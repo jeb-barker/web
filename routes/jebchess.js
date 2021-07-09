@@ -84,7 +84,7 @@ module.exports.run_setup = function(app){
             console.log(req.user) 
             let userData = await database.query("SELECT data FROM chess_players WHERE id=\'"+req.user+"\'")
             userData = JSON.parse(userData[0].data) 
-            userData.chess.current_game = req.query.current_fen
+            userData.chess.current_game = req.query.current_fen //change to current_pgn later
             await database.query("UPDATE chess_players SET data=\'"+JSON.stringify(userData)+"\' WHERE id=\'"+req.user+"\'")
             res.send('updated')
         }
@@ -114,11 +114,27 @@ module.exports.run_setup = function(app){
     app.get('/jebchess/logout', async function(req, res){
         passport.authenticate("google")
         if (req.user){
-            console.log(req.user) 
+            res.redirect('/jebchess')
+        }
+        else{
+            res.redirect('/jebchess')
+        }
+    })
+    
+    app.get('/jebchess/gameover', async function(req, res){
+        passport.authenticate("google")
+        if (req.user){
             let userData = await database.query("SELECT data FROM chess_players WHERE id=\'"+req.user+"\'")
             userData = JSON.parse(userData[0].data)
-            userData.chess.current_game = ""
+            if (req.query.code == "1"){
+                userData.chess.games_won += 1
+            }
+            if (req.query.code == "-1"){
+                userData.chess.games_lost += 1
+            }
+            
             await database.query("UPDATE chess_players SET data=\'"+JSON.stringify(userData)+"\' WHERE id=\'"+req.user+"\'")
+            
             res.redirect('/jebchess')
         }
         else{
