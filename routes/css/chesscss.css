@@ -1,6 +1,26 @@
 .board{
     margin:2vw;
 }
+.navbar{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+.nav-inn{
+    float: left;
+}
+.nav-inn-links, .nav-inn{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 7px 14px;
+    text-decoration: none;
+}
+li a:hover {
+  background-color: #111;
+}
 @media (max-width: 800px){
     .inner{
         width: 90vw;

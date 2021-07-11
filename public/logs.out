@@ -15995,3 +15995,682 @@ director-mysql
 _______________________
 Express server started
 116264767626572588517
+user landed at main page
+	Got date as: 7/9/2021
+user landed at main page
+	Got date as: 7/9/2021
+user landed at main page
+	Got date as: 7/9/2021
+director-mysql
+_______________________
+Express server started
+user landed at main page
+	Got date as: 7/10/2021
+results:  [
+  RowDataPacket { id: '109849137930120120596' },
+  RowDataPacket { id: '116264767626572588517' }
+]
+109849137930120120596  ---  116264767626572588517
+116264767626572588517  ---  116264767626572588517
+116264767626572588517
+{ games_won: 0, games_lost: 0, current_game: '' }
+results:  [
+  RowDataPacket { id: '109849137930120120596' },
+  RowDataPacket { id: '116264767626572588517' }
+]
+109849137930120120596  ---  116264767626572588517
+116264767626572588517  ---  116264767626572588517
+116264767626572588517
+{ games_won: 0, games_lost: 1, current_game: '' }
+116264767626572588517
+{ games_won: 0, games_lost: 1, current_game: '' }
+116264767626572588517
+116264767626572588517
+116264767626572588517
+node:internal/process/promises:227
+          triggerUncaughtException(err, true /* fromPromise */);
+          ^
+
+Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:213:20)
+    --------------------
+    at Protocol._enqueue (/site/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at Connection.query (/site/node_modules/mysql/lib/Connection.js:198:25)
+    at /site/routes/jebchess.js:30:29
+    at new Promise (<anonymous>)
+    at Database.query (/site/routes/jebchess.js:29:16)
+    at /site/routes/jebchess.js:106:43
+    at Layer.handle [as handle_request] (/site/node_modules/express/lib/router/layer.js:95:5)
+    at next (/site/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/site/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/site/node_modules/express/lib/router/layer.js:95:5) {
+  errno: -104,
+  code: 'ECONNRESET',
+  syscall: 'read',
+  fatal: true
+}
+director-mysql
+_______________________
+Express server started
+116264767626572588517
+{ games_won: 0, games_lost: 1, current_game: '1. d4 Nc6' }
+116264767626572588517
+{ games_won: 0, games_lost: 1, current_game: '1. d4 Nc6' }
+116264767626572588517
+{ games_won: 0, games_lost: 1, current_game: '1. d4 Nc6' }
+116264767626572588517
+{ games_won: 0, games_lost: 1, current_game: '1. d4 Nc6' }
+116264767626572588517
+{ games_won: 0, games_lost: 1, current_game: '1. d4 Nc6' }
+116264767626572588517
+/site/routes/jebchess.js:107
+            res.render('jebchess.hbs', JSON.parse(userData[0].data)) 
+                                                              ^
+
+TypeError: Cannot read property 'data' of undefined
+    at /site/routes/jebchess.js:107:63
+    at processTicksAndRejections (node:internal/process/task_queues:93:5)
+director-mysql
+_______________________
+Express server started
+116264767626572588517
+/site/routes/jebchess.js:107
+            res.render('jebchess.hbs', JSON.parse(userData[0].data)) 
+                                                              ^
+
+TypeError: Cannot read property 'data' of undefined
+    at /site/routes/jebchess.js:107:63
+    at processTicksAndRejections (node:internal/process/task_queues:93:5)
+director-mysql
+_______________________
+Express server started
+116264767626572588517
+/site/routes/jebchess.js:107
+            res.render('jebchess.hbs', JSON.parse(userData[0].data)) 
+                                                              ^
+
+TypeError: Cannot read property 'data' of undefined
+    at /site/routes/jebchess.js:107:63
+    at processTicksAndRejections (node:internal/process/task_queues:93:5)
+director-mysql
+_______________________
+Express server started
+results:  []
+INSERT INTO chess_players (id, name, data) VALUES ('116264767626572588517', 'Jeb Barker', '{"personal":{"id":"116264767626572588517","name":"Jeb Barker","email":"jeb.e.barker@gmail.com"},"chess":{"games_won":0,"games_lost":0,"current_game":""}}')
+116264767626572588517
+{ games_won: 0, games_lost: 0, current_game: '' }
+116264767626572588517
+{ games_won: 0, games_lost: 0, current_game: '' }
+results:  [ RowDataPacket { id: '116264767626572588517' } ]
+116264767626572588517  ---  116264767626572588517
+116264767626572588517
+{ games_won: 0, games_lost: 0, current_game: '' }
+116264767626572588517
+{ games_won: 0, games_lost: 0, current_game: '' }
+116264767626572588517
+{ games_won: 0, games_lost: 0, current_game: '' }
+116264767626572588517
+{ games_won: 0, games_lost: 0, current_game: '' }
+116264767626572588517
+{ games_won: 0, games_lost: 0, current_game: '' }
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+node:internal/process/promises:227
+          triggerUncaughtException(err, true /* fromPromise */);
+          ^
+
+Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:213:20)
+    --------------------
+    at Protocol._enqueue (/site/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at Connection.query (/site/node_modules/mysql/lib/Connection.js:198:25)
+    at /site/routes/jebchess.js:30:29
+    at new Promise (<anonymous>)
+    at Database.query (/site/routes/jebchess.js:29:16)
+    at getquerydata (/site/routes/jebchess.js:165:25)
+    at /site/routes/jebchess.js:170:29
+    at Layer.handle [as handle_request] (/site/node_modules/express/lib/router/layer.js:95:5)
+    at next (/site/node_modules/express/lib/router/route.js:137:13)
+    at complete (/site/node_modules/passport/lib/middleware/authenticate.js:268:13) {
+  errno: -104,
+  code: 'ECONNRESET',
+  syscall: 'read',
+  fatal: true
+}
+director-mysql
+_______________________
+Express server started
+user landed at main page
+	Got date as: 7/10/2021
+results:  [ RowDataPacket { id: '116264767626572588517' } ]
+116264767626572588517  ---  116264767626572588517
+116264767626572588517
+{ games_won: 0, games_lost: 0, current_game: '1. e4 Nf6 2. e5 Ne4' }
+116264767626572588517
+{ games_won: 0, games_lost: 0, current_game: '1. e4 Nf6 2. e5 Ne4' }
+116264767626572588517
+node:internal/process/promises:227
+          triggerUncaughtException(err, true /* fromPromise */);
+          ^
+
+Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:213:20)
+    --------------------
+    at Protocol._enqueue (/site/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at Connection.query (/site/node_modules/mysql/lib/Connection.js:198:25)
+    at /site/routes/jebchess.js:30:29
+    at new Promise (<anonymous>)
+    at Database.query (/site/routes/jebchess.js:29:16)
+    at /site/routes/jebchess.js:85:43
+    at Layer.handle [as handle_request] (/site/node_modules/express/lib/router/layer.js:95:5)
+    at next (/site/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/site/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/site/node_modules/express/lib/router/layer.js:95:5) {
+  errno: -104,
+  code: 'ECONNRESET',
+  syscall: 'read',
+  fatal: true
+}
+director-mysql
+_______________________
+Express server started
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+{
+  games_won: 0,
+  games_lost: 0,
+  current_game: '1. e4 Nf6 2. e5 Ne4 3. Nf3 Nc6 4. Bd3 Nc5 5. Bb5 Nb4 6. b3 c6 7. Bc4 b5 8. Bxb5 cxb5 9. Ba3 Bb7 10. Bxb4 Na6 11. Bc3 Qc7 12. O-O Rg8 13. d3 Qc5 14. Qe1 Rh8 15. d4 Qc7 16. Na3 Bxf3 17. gxf3 b4 18. Bxb4 f6 19. exf6 gxf6 20. Nb5 Qxc2 21. Qe3 Rg8  22. Kh1 Nxb4 23. Rfc1 Bh6 24. Qxh6 Qxf2 25. Qh5  Kd8 26. Rg1 Rxg1  27. Rxg1 Kc8 28. Qe8  Kb7 29. Qxd7  Kb6 30. a4 Qxf3  31. Rg2 Qf1  32. Rg1 Qf3  33. Rg2 Qf1  34. Rg1 Qf3  35. Rg2 Qf1  36. Rg1 Qf3  37. Rg2 Qf1  38. Rg1 Qf3  39. Rg2 Qf1  40. Rg1 Qf3 '
+}
+results:  [ RowDataPacket { id: '116264767626572588517' } ]
+116264767626572588517  ---  116264767626572588517
+116264767626572588517
+{
+  games_won: 0,
+  games_lost: 1,
+  current_game: '1. e4 Nf6 2. e5 Ne4 3. Nf3 Nc6 4. Bd3 Nc5 5. Bb5 Nb4 6. b3 c6 7. Bc4 b5 8. Bxb5 cxb5 9. Ba3 Bb7 10. Bxb4 Na6 11. Bc3 Qc7 12. O-O Rg8 13. d3 Qc5 14. Qe1 Rh8 15. d4 Qc7 16. Na3 Bxf3 17. gxf3 b4 18. Bxb4 f6 19. exf6 gxf6 20. Nb5 Qxc2 21. Qe3 Rg8  22. Kh1 Nxb4 23. Rfc1 Bh6 24. Qxh6 Qxf2 25. Qh5  Kd8 26. Rg1 Rxg1  27. Rxg1 Kc8 28. Qe8  Kb7 29. Qxd7  Kb6 30. a4 Qxf3  31. Rg2 Qf1  32. Rg1 Qf3  33. Rg2 Qf1  34. Rg1 Qf3  35. Rg2 Qf1  36. Rg1 Qf3  37. Rg2 Qf1  38. Rg1 Qf3  39. Rg2 Qf1  40. Rg1 Qf3 '
+}
+116264767626572588517
+116264767626572588517
+{
+  games_won: 0,
+  games_lost: 1,
+  current_game: '1. e4 Nf6 2. e5 Ne4 3. Nf3 Nc6 4. Bd3 Nc5 5. Bb5 Nb4 6. b3 c6 7. Bc4 b5 8. Bxb5 cxb5 9. Ba3 Bb7 10. Bxb4 Na6 11. Bc3 Qc7 12. O-O Rg8 13. d3 Qc5 14. Qe1 Rh8 15. d4 Qc7 16. Na3 Bxf3 17. gxf3 b4 18. Bxb4 f6 19. exf6 gxf6 20. Nb5 Qxc2 21. Qe3 Rg8  22. Kh1 Nxb4 23. Rfc1 Bh6 24. Qxh6 Qxf2 25. Qh5  Kd8 26. Rg1 Rxg1  27. Rxg1 Kc8 28. Qe8  Kb7 29. Qxd7  Kb6 30. a4 Qxf3  31. Rg2 Qf1  32. Rg1 Qf3  33. Rg2 Qf1  34. Rg1 Qf3  35. Rg2 Qf1  36. Rg1 Qf3  37. Rg2 Qf1  38. Rg1 Qf3  39. Rg2 Qf1  40. Rg1 Qf3 '
+}
+director-mysql
+_______________________
+Express server started
+116264767626572588517
+116264767626572588517
+{
+  games_won: 0,
+  games_lost: 1,
+  current_game: '1. e4 Nf6 2. e5 Ne4 3. Nf3 Nc6 4. Bd3 Nc5 5. Bb5 Nb4 6. b3 c6 7. Bc4 b5 8. Bxb5 cxb5 9. Ba3 Bb7 10. Bxb4 Na6 11. Bc3 Qc7 12. O-O Rg8 13. d3 Qc5 14. Qe1 Rh8 15. d4 Qc7 16. Na3 Bxf3 17. gxf3 b4 18. Bxb4 f6 19. exf6 gxf6 20. Nb5 Qxc2 21. Qe3 Rg8  22. Kh1 Nxb4 23. Rfc1 Bh6 24. Qxh6 Qxf2 25. Qh5  Kd8 26. Rg1 Rxg1  27. Rxg1 Kc8 28. Qe8  Kb7 29. Qxd7  Kb6 30. a4 Qxf3  31. Rg2 Qf1  32. Rg1 Qf3  33. Rg2 Qf1  34. Rg1 Qf3  35. Rg2 Qf1  36. Rg1 Qf3  37. Rg2 Qf1  38. Rg1 Qf3  39. Rg2 Qf1  40. Rg1 Qf3 '
+}
+/site/routes/jebchess.js:135
+            userData.chess.game_history.concat(userData.chess.current_game)
+                                        ^
+
+TypeError: Cannot read property 'concat' of undefined
+    at /site/routes/jebchess.js:135:41
+    at processTicksAndRejections (node:internal/process/task_queues:93:5)
+director-mysql
+_______________________
+Express server started
+/site/routes/jebchess.js:135
+            userData.chess.game_history.concat(userData.chess.current_game)
+                                        ^
+
+TypeError: Cannot read property 'concat' of undefined
+    at /site/routes/jebchess.js:135:41
+    at processTicksAndRejections (node:internal/process/task_queues:93:5)
+director-mysql
+_______________________
+Express server started
+/site/routes/jebchess.js:135
+            userData.chess.game_history.concat(userData.chess.current_game)
+                                        ^
+
+TypeError: Cannot read property 'concat' of undefined
+    at /site/routes/jebchess.js:135:41
+    at processTicksAndRejections (node:internal/process/task_queues:93:5)
+director-mysql
+_______________________
+Express server started
+/site/routes/jebchess.js:135
+            userData.chess.game_history.concat(userData.chess.current_game)
+                                        ^
+
+TypeError: Cannot read property 'concat' of undefined
+    at /site/routes/jebchess.js:135:41
+    at processTicksAndRejections (node:internal/process/task_queues:93:5)
+director-mysql
+_______________________
+Express server started
+/site/routes/jebchess.js:135
+            userData.chess.game_history.concat(userData.chess.current_game)
+                                        ^
+
+TypeError: Cannot read property 'concat' of undefined
+    at /site/routes/jebchess.js:135:41
+    at processTicksAndRejections (node:internal/process/task_queues:93:5)
+director-mysql
+_______________________
+Express server started
+director-mysql
+_______________________
+Express server started
+/site/routes/jebchess.js:135
+            userData.chess.game_history.push(userData.chess.current_game)
+                                        ^
+
+TypeError: Cannot read property 'push' of undefined
+    at /site/routes/jebchess.js:135:41
+    at processTicksAndRejections (node:internal/process/task_queues:93:5)
+director-mysql
+_______________________
+Express server started
+/site/routes/jebchess.js:135
+            userData.chess.game_history.push(userData.chess.current_game)
+                                        ^
+
+TypeError: Cannot read property 'push' of undefined
+    at /site/routes/jebchess.js:135:41
+    at processTicksAndRejections (node:internal/process/task_queues:93:5)
+director-mysql
+_______________________
+Express server started
+/site/routes/jebchess.js:135
+            userData.chess.game_history.push(userData.chess.current_game)
+                                        ^
+
+TypeError: Cannot read property 'push' of undefined
+    at /site/routes/jebchess.js:135:41
+    at processTicksAndRejections (node:internal/process/task_queues:93:5)
+director-mysql
+_______________________
+Express server started
+user landed at main page
+	Got date as: 7/10/2021
+results:  []
+INSERT INTO chess_players (id, name, data) VALUES ('116264767626572588517', 'Jeb Barker', '{"personal":{"id":"116264767626572588517","name":"Jeb Barker","email":"jeb.e.barker@gmail.com"},"chess":{"games_won":0,"games_lost":0,"current_game":"","game_history":[]}}')
+116264767626572588517
+{ games_won: 0, games_lost: 0, current_game: '', game_history: [] }
+results:  [ RowDataPacket { id: '116264767626572588517' } ]
+116264767626572588517  ---  116264767626572588517
+116264767626572588517
+{ games_won: 0, games_lost: 1, current_game: '', game_history: [ '' ] }
+116264767626572588517
+116264767626572588517
+116264767626572588517
+{ games_won: 0, games_lost: 1, current_game: '', game_history: [ '' ] }
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+results:  [ RowDataPacket { id: '116264767626572588517' } ]
+116264767626572588517  ---  116264767626572588517
+116264767626572588517
+{
+  games_won: 0,
+  games_lost: 2,
+  current_game: '',
+  game_history: [
+    '',
+    '1. d4 Nc6 2. Nf3 Nf6 3. Bf4 Ne4 4. e3 g5 5. Nxg5 Nxg5 6. Bxg5 Rg8 7. h4 Nb4 8. Bd3 Nxd3  9. Qxd3 f6 10. Qxh7 Rxg5 11. hxg5 e6 12. Qg6  Ke7 13. Qxf6  Ke8 14. Rh8 Qxf6 15. gxf6 Kf7 16. Nc3 Bb4 17. a3 Bxc3  18. bxc3 Rb8 19. O-O-O Ra8 20. Rdh1 Kxf6 21. Rf8  Ke7 22. Rhh8 Rb8 23. Rxc8 Rxc8 24. Rxc8 Kd6 25. c4 Kc6 26. Kb2 Kb6 27. Kb3 Kc6 28. Rh8 d5 29. cxd5  Kxd5 30. Kc3 Kd6 31. Kc4 e5 32. dxe5  Kxe5 33. Ra8 a6 34. Ra7 b6 35. Rxa6 Ke4 36. a4 Ke5 37. a5 bxa5 38. Rxa5  Ke4 39. c3 c5 40. Rxc5'
+  ]
+}
+116264767626572588517
+director-mysql
+_______________________
+Express server started
+116264767626572588517
+/site/routes/jebchess.js:210
+            res.render('jebchessprofile.hbs', JSON.parse(userData[0].data)) 
+                                                                     ^
+
+TypeError: Cannot read property 'data' of undefined
+    at /site/routes/jebchess.js:210:70
+    at processTicksAndRejections (node:internal/process/task_queues:93:5)
+director-mysql
+_______________________
+Express server started
+116264767626572588517
+/site/routes/jebchess.js:210
+            res.render('jebchessprofile.hbs', JSON.parse(userData[0].data)) 
+                                                                     ^
+
+TypeError: Cannot read property 'data' of undefined
+    at /site/routes/jebchess.js:210:70
+    at processTicksAndRejections (node:internal/process/task_queues:93:5)
+director-mysql
+_______________________
+Express server started
+results:  []
+INSERT INTO chess_players (id, name, data) VALUES ('116264767626572588517', 'Jeb Barker', '{"personal":{"id":"116264767626572588517","name":"Jeb Barker","email":"jeb.e.barker@gmail.com"},"chess":{"games_won":0,"games_lost":0,"current_game":"","game_history":[]}}')
+116264767626572588517
+{ games_won: 0, games_lost: 0, current_game: '', game_history: [] }
+116264767626572588517
+results:  [ RowDataPacket { id: '116264767626572588517' } ]
+116264767626572588517  ---  116264767626572588517
+116264767626572588517
+{ games_won: 0, games_lost: 0, current_game: '', game_history: [] }
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517
+116264767626572588517

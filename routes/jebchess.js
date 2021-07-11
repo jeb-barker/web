@@ -126,13 +126,20 @@ module.exports.run_setup = function(app){
         if (req.user){
             let userData = await database.query("SELECT data FROM chess_players WHERE id=\'"+req.user+"\'")
             userData = JSON.parse(userData[0].data)
+            let status = ""
             if (req.query.code == "1"){
                 userData.chess.games_won += 1
+                status = "win"
             }
             if (req.query.code == "-1"){
                 userData.chess.games_lost += 1
+                status = "loss"
             }
-            
+            if (req.query.code == "0"){
+                status = "draw"
+            }
+            userData.chess.game_history.push(userData.chess.current_game + " --- " + status)
+            userData.chess.current_game = ""
             await database.query("UPDATE chess_players SET data=\'"+JSON.stringify(userData)+"\' WHERE id=\'"+req.user+"\'")
             
             res.redirect('/jebchess')
@@ -187,10 +194,24 @@ module.exports.run_setup = function(app){
             userData.chess.games_won = 0
             userData.chess.games_lost = 0
             userData.chess.current_game = ""
+            userData.chess.game_history = []
             var sql = "INSERT INTO chess_players (id, name, data) VALUES (\'"+req.user.id+"\', \'"+req.user.displayName+"\', \'"+JSON.stringify(userData)+"\')";
             console.log(sql)
             await database.query(sql)
         }
         res.redirect('/jebchess/play')
     });
+    
+    app.get('/jebchess/profile', async function(req, res){
+        passport.authenticate("google")
+        if (req.user){
+            console.log(req.user) 
+            let userData = await database.query("SELECT data FROM chess_players WHERE id=\'"+req.user+"\'")
+            res.render('jebchessprofile.hbs', JSON.parse(userData[0].data)) 
+        }
+        else{
+            res.redirect('/jebchess/login')
+        }
+    })
+    
 }
